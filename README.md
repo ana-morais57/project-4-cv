@@ -68,7 +68,7 @@ A custom Convolutional Neural Network (CNN) was built to establish a baseline fo
 ## Training and Evaluation
 The models were trained and evaluated with:
 - **Metrics:** Accuracy, loss, precision, recall, and F1-score.
-- **Regularization:** Dropout layers and learning rate scheduling.
+- **Regularization:** learning rate scheduling.
 - **Callbacks:** Early stopping and model checkpoints.
 
 ---
@@ -103,14 +103,15 @@ Upload an image to the Streamlit app and receive a prediction with confidence.
 
 ## Files in Repository
 
-| File                        | Description                                                           |
-|-----------------------------|-----------------------------------------------------------------------|
-| `requirements.txt `         | List of Python dependencies required for the project..                |
-| `RecyclingClassifier.ipynb` | Notebook for experimenting with the extended dataset.                 |
-| `eda_utils.py`              | Utility functions for EDA and dataset analysis.                       |
-| `utils.py`                  | Helper functions for organizing images and assigning unique names.    |
-| `app.py`                    | Streamlit application for deploying the classification model.         |
-| `best_mobilenet_model.keras`| Pre-trained MobileNetV2 model saved after fine-tuning.                |
+| File                         | Description                                                           |
+|------------------------------|-----------------------------------------------------------------------|
+| `requirements.txt `          | List of Python dependencies required for the project..                |
+| `RecyclingClassifier.ipynb`  | Notebook for experimenting with the extended dataset.                 |
+| `eda_utils.py`               | Utility functions for EDA and dataset analysis.                       |
+| `utils.py`                   | Helper functions for organizing images and assigning unique names.    |
+| `app.py`                     | Streamlit application for deploying the classification model.         |
+| `best_mobilenet_model.keras` | Pre-trained MobileNetV2 model saved after fine-tuning.                |
+| `RecyclingClassification.pdf`| Presentation detailing the project details and conclusions.           |
  
 ---
 
