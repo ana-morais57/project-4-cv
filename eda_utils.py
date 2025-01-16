@@ -5,6 +5,7 @@ from PIL import Image
 import seaborn as sns
 from collections import Counter
 from sklearn.model_selection import train_test_split
+import random
 
 def create_directory(path):
     """Create a directory if it doesn't exist."""
@@ -66,6 +67,32 @@ def eda():
     print("Plotting image size distribution for Household Waste...")
     plot_image_size_distribution(household_sizes)
 
+def check_image_formats(folder):
+    formats = {}
+    for root, _, files in os.walk(folder):
+        for file in files:
+            if file.endswith(('jpg', 'jpeg', 'png')):
+                file_path = os.path.join(root, file)
+                try:
+                    with Image.open(file_path) as img:
+                        formats[file_path] = img.mode  # e.g., 'RGB', 'L' (grayscale)
+                except Exception as e:
+                    print(f"Corrupted or unreadable image: {file_path} - {e}")
+    return formats
+
+def check_corrupted_images(folder):
+    corrupted = []
+    for root, _, files in os.walk(folder):
+        for file in files:
+            if file.endswith(('jpg', 'jpeg', 'png')):
+                file_path = os.path.join(root, file)
+                try:
+                    with Image.open(file_path) as img:
+                        img.verify()  # Verify image integrity
+                except Exception as e:
+                    corrupted.append(file_path)
+    return corrupted
+
 def split_dataset(source_folder, train_folder, val_folder, test_folder, test_size=0.15, val_size=0.15):
     """Split the dataset into train, validation, and test sets."""
     categories = os.listdir(source_folder)
@@ -96,3 +123,19 @@ def split_dataset(source_folder, train_folder, val_folder, test_folder, test_siz
         copy_files(train_imgs, train_folder, category)
         copy_files(val_imgs, val_folder, category)
         copy_files(test_imgs, test_folder, category)
+
+
+def visualize_random_images(folder, num_samples=9):
+    all_images = []
+    for root, _, files in os.walk(folder):
+        all_images.extend([os.path.join(root, file) for file in files if file.endswith(('jpg', 'jpeg', 'png'))])
+    
+    sample_images = random.sample(all_images, min(num_samples, len(all_images)))
+    
+    plt.figure(figsize=(10, 10))
+    for i, img_path in enumerate(sample_images):
+        img = Image.open(img_path)
+        ax = plt.subplot(3, 3, i + 1)
+        plt.imshow(img)
+        plt.axis('off')
+    plt.show()
