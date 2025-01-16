@@ -11,13 +11,9 @@ This repository contains a Computer Vision project to classify waste images into
 2. [Dataset](#dataset)
 3. [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
 4. [Model Development](#model-development)
-   - [Baseline Model](#baseline-model)
-   - [Transfer Learning with MobileNetV2](#transfer-learning-with-mobilenetv2)
 5. [Training and Evaluation](#training-and-evaluation)
 6. [Deployment](#deployment)
 7. [Usage](#usage)
-   - [Training](#training)
-   - [Prediction](#prediction)
 8. [Files in Repository](#files-in-repository)
 9. [Future Work](#future-work)
 
@@ -36,7 +32,8 @@ Key highlights:
 ---
 
 ## Dataset
-The dataset consists of images organized into categories:
+
+The [Recycling](https://drive.google.com/file/d/1WhDq3xo2T-a8BAbx0ByoF8K1zvrHE5f2/view?usp=sharing) dataset consists of images for machine learning classification, that were divided into two categories:
 - **Recyclable:** Aluminum cans, glass bottles, etc.
 - **Household Waste:** Food waste, plastic straws, etc.
 
