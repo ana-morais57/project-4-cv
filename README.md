@@ -1,51 +1,124 @@
 ![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-# Image Processing and Computer Vision
+# Waste Classification Project
 
-## Introduction
+This repository contains a Computer Vision project to classify waste images into "Recyclable" or "Household Waste." It employs transfer learning with MobileNetV2 and a custom-built pipeline for preprocessing, training, evaluation, and deployment.
 
-The field of computer vision is revolutionizing the way machines interact with the visual world. Through this project, students will engage with fundamental techniques in image classification, applying machine learning models to real-world datasets. This will provide hands-on experience in both developing and deploying classifiers that can discern between different categories of objects in images.
+---
 
-## Project Overview
+## Table of Contents
+1. [Overview](#overview)
+2. [Dataset](#dataset)
+3. [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
+4. [Model Development](#model-development)
+   - [Baseline Model](#baseline-model)
+   - [Transfer Learning with MobileNetV2](#transfer-learning-with-mobilenetv2)
+5. [Training and Evaluation](#training-and-evaluation)
+6. [Deployment](#deployment)
+7. [Usage](#usage)
+   - [Training](#training)
+   - [Prediction](#prediction)
+8. [Files in Repository](#files-in-repository)
+9. [Future Work](#future-work)
 
-This project is divided into several phases, each designed to deepen your understanding and skills in computer vision:
+---
 
-1. **Dataset Selection**: Choose one of the provided datasets for image classification. Each dataset has unique characteristics and challenges:
-   - [Recycling](https://drive.google.com/file/d/1WhDq3xo2T-a8BAbx0ByoF8K1zvrHE5f2/view?usp=sharing): The dataset consists of images for machine learning classification, divided into two categories: recyclable and household waste. It aims to facilitate the development of models that can automate the sorting of these waste types, enhancing recycling processes.
-   - [Bone Fractures](https://drive.google.com/file/d/1WeuxOenviI1_ElW5ISED4MhvR_YFYdmB/view?usp=drive_link): The dataset includes multi-region X-ray images focused on diagnosing bone fractures.
-   - [Parking Lot Detection](https://drive.google.com/file/d/1Wehry7yNRMY5PELWkY6ysW_oQP44Xvzf/view?usp=sharing): The dataset is designed for developing and testing parking lot vehicle detection algorithms.
-   
-2. **Exploratory Data Analysis (EDA)**: Analyze the dataset to understand its structure, features, and the challenges it presents. Document your findings and initial thoughts on how to approach the classification problem.
+## Overview
+This project aims to automate waste sorting by classifying images into two categories:
+- **Recyclable**
+- **Household Waste**
 
-3. **Model Development**:
-   - Preprocess the images to get them ready for training.
-   - Select and apply a machine learning algorithm to build a classifier. You can use frameworks like TensorFlow, Keras, or PyTorch.
-   - Train your model and optimize its parameters to achieve the best performance.
+Key highlights:
+- Comprehensive EDA for dataset understanding.
+- Transfer learning with MobileNetV2.
+- Deployment using Streamlit for user-friendly interaction.
 
-4. **Evaluation**:
-   - Validate your model using appropriate metrics (accuracy, precision, recall, F1-score, etc.).
-   - Discuss the performance of your model and any potential biases or limitations.
+---
 
-5. **Deployment (Optional choices)**:
-   - Deploy your model as a simple web application or a script that can take an image input and output a classification.
-   - You can use streamlit + Flask for this, for example
-   - Run your model on SageMaker
+## Dataset
+The dataset consists of images organized into categories:
+- **Recyclable:** Aluminum cans, glass bottles, etc.
+- **Household Waste:** Food waste, plastic straws, etc.
 
-## Resources
+### Dataset Organization
+The dataset was split into:
+- **Training**: 70%
+- **Validation**: 15%
+- **Test**: 15%
 
-- TensorFlow: [https://www.tensorflow.org/](https://www.tensorflow.org/)
-- PyTorch: [https://pytorch.org/](https://pytorch.org/)
-- Scikit-Learn for preprocessing tools: [https://scikit-learn.org/](https://scikit-learn.org/)
+Images were preprocessed with unique names to avoid duplication and ensure consistency.
 
-## Deliverables
+---
 
-1. **Python Code:** Provide well-documented Python code that conducts the analysis.
-2. **Report**: Submit a detailed report documenting your EDA findings, model development process, evaluation metrics, and conclusions about the model's performance.
-3. **Presentation**: Prepare a short presentation that overviews your project, from the dataset analysis to the final model evaluation. Include visual aids such as charts, model diagrams, and example predictions.
+## Exploratory Data Analysis (EDA)
+- Conducted using custom scripts in `eda_utils.py`.
+- Key analyses include:
+  - Image size and format.
+  - Dataset distribution by categories.
 
-## Bonus
+---
 
-- Implement data augmentation techniques to improve your model's robustness.
-- Compare the performance of at least three different models or architectures.
-- Provide an interactive demo of your model during the presentation.
+## Model Development
 
+### Baseline Model
+A custom Convolutional Neural Network (CNN) was built to establish a baseline for classification performance.
+
+### Transfer Learning with MobileNetV2
+- **Architecture:** MobileNetV2 pre-trained on ImageNet.
+- **Augmentation:** Applied transformations like rotation, zoom, and flipping to improve generalization.
+- **Fine-tuning:** Enabled training on specific layers to adapt MobileNetV2 to the dataset.
+
+---
+
+## Training and Evaluation
+The models were trained and evaluated with:
+- **Metrics:** Accuracy, loss, precision, recall, and F1-score.
+- **Regularization:** Dropout layers and learning rate scheduling.
+- **Callbacks:** Early stopping and model checkpoints.
+
+---
+
+## Deployment
+The model is deployed using Streamlit:
+- **Interface:** Upload an image and classify it as "Recyclable" or "Household Waste."
+- **Backend:** Uses a saved Keras model (`best_mobilenet_model.keras`) for inference.
+
+### How to Run
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the app
+streamlit run app.py
+
+---
+
+## Usage
+
+### Training
+Run the notebook `MyTemplate.ipynb` to train and evaluate models:
+- Edit paths to match your dataset structure.
+- Experiment with different augmentation and transfer learning techniques.
+
+### Prediction
+Upload an image to the Streamlit app and receive a prediction with confidence.
+
+---
+
+## Files in Repository
+
+| File                        | Description                                                           |
+|-----------------------------|-----------------------------------------------------------------------|
+| `requirements.txt `         | List of Python dependencies required for the project..                  |
+| `MyTemplate.ipynb`          | Notebook for experimenting with the extended dataset.                |
+| `eda_utils.py`              | Utility functions for EDA and dataset analysis.                      |
+| `utils.py`                  | Helper functions for organizing images and assigning unique names.   |
+| `app.py`                    | Streamlit application for deploying the classification model.         |
+| `best_mobilenet_model.keras`| Pre-trained MobileNetV2 model saved after fine-tuning.               |
+
+---
+
+## Future Work
+- **Model Optimization**: Test alternative architectures like ResNet or EfficientNet.
+- **Data Expansion**: Incorporate more waste categories and diverse images.
+- **Deployment**: Extend deployment to cloud platforms (e.g., AWS, Google Cloud).
