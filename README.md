@@ -62,8 +62,6 @@ A custom Convolutional Neural Network (CNN) was built to establish a baseline fo
 
 ### Transfer Learning with MobileNetV2
 - **Architecture:** MobileNetV2 pre-trained on ImageNet.
-- **Augmentation:** Applied transformations like rotation, zoom, and flipping to improve generalization.
-- **Fine-tuning:** Enabled training on specific layers to adapt MobileNetV2 to the dataset.
 
 ---
 
@@ -107,16 +105,18 @@ Upload an image to the Streamlit app and receive a prediction with confidence.
 
 | File                        | Description                                                           |
 |-----------------------------|-----------------------------------------------------------------------|
-| `requirements.txt `         | List of Python dependencies required for the project..                  |
-| `MyTemplate.ipynb`          | Notebook for experimenting with the extended dataset.                |
-| `eda_utils.py`              | Utility functions for EDA and dataset analysis.                      |
-| `utils.py`                  | Helper functions for organizing images and assigning unique names.   |
+| `requirements.txt `         | List of Python dependencies required for the project..                |
+| `RecyclingClassifier.ipynb` | Notebook for experimenting with the extended dataset.                 |
+| `eda_utils.py`              | Utility functions for EDA and dataset analysis.                       |
+| `utils.py`                  | Helper functions for organizing images and assigning unique names.    |
 | `app.py`                    | Streamlit application for deploying the classification model.         |
-| `best_mobilenet_model.keras`| Pre-trained MobileNetV2 model saved after fine-tuning.               |
-
+| `best_mobilenet_model.keras`| Pre-trained MobileNetV2 model saved after fine-tuning.                |
+ 
 ---
 
 ## Future Work
 - **Model Optimization**: Test alternative architectures like ResNet or EfficientNet.
+- **Augmentation:** Applied transformations like rotation, zoom, and flipping to improve generalization.
+- **Fine-tuning:** Enabled training on specific layers to adapt MobileNetV2 to the dataset.
 - **Data Expansion**: Incorporate more waste categories and diverse images.
 - **Deployment**: Extend deployment to cloud platforms (e.g., AWS, Google Cloud).
