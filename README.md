@@ -1,6 +1,6 @@
 ![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-# Waste Classification Project
+# Waste Image Classifier with TensorFlow
 
 This repository contains a Computer Vision project to classify waste images into "Recyclable" or "Household Waste." It employs transfer learning with MobileNetV2 and a custom-built pipeline for preprocessing, training, evaluation, and deployment.
 
